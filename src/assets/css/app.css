@@ -1,0 +1,160 @@
+body{margin:0}
+
+
+#container {
+        width: 2440px;
+        height: 2440px;
+                border: 1px solid gray;
+
+    }
+div#container {
+    background-color: #fff;
+}
+.node-column {
+	background-color: rgba(255, 255, 255, 0.72);
+	list-style-type: none;
+	padding: 5px;
+	margin: 0px;
+
+}
+ul.nodecollection-container.ui-sortable {
+	margin: 0px;
+}
+
+.node-view{
+	width: 320px;
+	min-width: 200px;
+	background-color: #e8e8e8;
+	padding: 5px;
+	border: 1px solid #000;
+	margin: 0px;
+
+}
+
+.node-view ul{
+	padding: 0px;
+}
+
+.node-view li{
+		border: 1px solid rgba(0, 0, 0, 0.1);
+}
+.node-view .add-column{
+width: 100%;
+}
+
+ .item {
+      position: absolute;
+       background-color: #C2C2C2;
+      border: 1px solid rgb(184, 184, 184);
+         width: 100px;
+		 	border-radius: 4px;
+	padding: 2px 5px 5px 5px;
+	width: auto;
+	float: left;
+	z-index: 10;
+	min-width: 260px;
+      }
+
+
+.node-Blue{
+background-color: #5DE7EC;
+}
+
+.node-Green {
+background-color: #C4EC5D;
+}
+
+.node-Yellow {
+background-color: #ECE15D;
+}
+
+.node-Red {
+background-color: #F7D1D6;
+}
+
+.node-Yellow-light {
+background-color: #FFF8A6;
+}
+
+.node-Grey {
+background-color: #F1F1F1;
+}
+
+
+
+.toolbox button{
+	padding: 5px;
+
+}
+
+      #state1 {
+  position: absolute;
+  left: 100px;
+  top: 100px;
+}
+      
+#state2 {
+  position: absolute;
+  left: 250px;
+  top: 100px;
+}
+      
+#state3 {
+  position: absolute;
+  left: 100px;
+  top: 250px;
+}
+
+
+.label {
+	background-color: #000;
+	font-size: 11px;
+	z-index: 11;
+}
+
+
+#biodesign-logo {
+	left: 0px;
+	bottom: 0px;
+	position: fixed;
+	z-index: 1;
+}
+
+
+#biodesign-logo img {
+}
+
+
+.conn {
+	background-color: rgba(0, 0, 0, 0.26);
+	height: 10px;
+}
+
+
+
+.btn-default {
+  color: #333;
+  background-color: #FFF;
+  border-color: #ccc;
+}
+
+.btn-container {
+  color: #333;
+  background-color: rgba(255, 255, 255, 0.34);
+  border-color: #ccc;
+}
+
+.addSeedRow{
+	  background-color: #E7E7E7;
+
+}
+
+.editSeedRow{
+	  background-color: #EEEEEE;
+}
+
+.headerSeedRow{
+
+    background-color: #fff;
+
+}

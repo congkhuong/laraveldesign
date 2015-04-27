@@ -1,0 +1,14 @@
+{
+  "name": "backbone.modal",
+  "homepage": "https://github.com/awkward/backbone.modal",
+  "version": "1.0.0",
+  "_release": "1.0.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.0.0",
+    "commit": "e701fdc82a730d2f7562161c89ce33ecf0765dd2"
+  },
+  "_source": "https://github.com/awkward/backbone.modal.git",
+  "_target": "v1.0.0",
+  "_originalSource": "https://github.com/awkward/backbone.modal.git"
+}

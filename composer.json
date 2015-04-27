@@ -1,0 +1,14 @@
+{
+    "name": "congkhuong/laraveldesign",
+    "description": "Design database on laravel 5",
+    "type": "c",
+    "license": "Mit",
+    "authors": [
+        {
+            "name": "Tran",
+            "email": "congkhuong1308@gmail.com"
+        }
+    ],
+    "minimum-stability": "beta",
+    "require": {}
+}
