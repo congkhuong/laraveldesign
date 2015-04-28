@@ -13,5 +13,10 @@
         }
     ],
     "minimum-stability": "beta",
-    "require": {}
+    "require": {},
+	"autoload": {
+        "psr-4": {
+			"Congkhuong\\LaravelDesign\\": "src/"
+        }
+    }
 }
