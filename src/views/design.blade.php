@@ -8,11 +8,11 @@
         <meta name="author" content="">
         <title>Laravel Database Designer 0.1</title>
         <!-- Bootstrap core CSS -->
-        <link href="{{ asset('vendor/bernardino/bower_components/bootstrap/dist/css/bootstrap.css') }} " rel="stylesheet">
+        <link href="{{ asset('vendor/congkhuong/bower_components/bootstrap/dist/css/bootstrap.css') }} " rel="stylesheet">
         <!-- Custom styles for this template -->
 
-        <link href="{{ asset('vendor/bernardino/css/jumbotron.css') }}" rel="stylesheet">
-        <link href="{{ asset('vendor/bernardino/css/app.css') }}" rel="stylesheet">
+        <link href="{{ asset('vendor/congkhuong/css/jumbotron.css') }}" rel="stylesheet">
+        <link href="{{ asset('vendor/congkhuong/css/app.css') }}" rel="stylesheet">
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -578,41 +578,41 @@
             <!-- Bootstrap core JavaScript
             ================================================== -->
             <!-- Placed at the end of the document so the pages load faster -->
-            <script src="{{ asset('vendor/bernardino/bower_components/jquery/jquery.js') }}"></script>
+            <script src="{{ asset('vendor/congkhuong/bower_components/jquery/jquery.js') }}"></script>
 
 
-            <script src="{{ asset('vendor/bernardino/bower_components/jquery-ui/jquery-ui.min.js') }}"></script>
-            <script src="{{ asset('vendor/bernardino/bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+            <script src="{{ asset('vendor/congkhuong/bower_components/jquery-ui/jquery-ui.min.js') }}"></script>
+            <script src="{{ asset('vendor/congkhuong/bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
 
-            <script src="{{ asset('vendor/bernardino/bower_components/jsplumb/dist/js/jquery.jsPlumb-1.6.4.js') }}"></script>
-            <script src="{{ asset('vendor/bernardino/bower_components/underscore/underscore.js') }}"></script>
-            <script src="{{ asset('vendor/bernardino/bower_components/backbone/backbone.js') }}"></script>
-            <script src="{{ asset('vendor/bernardino/bower_components/marionette/lib/backbone.marionette.js') }}"></script>
-            <script src="{{ asset('vendor/bernardino/bower_components/backbone.syphon/lib/backbone.syphon.js') }}"></script>
-            <script src="{{ asset('vendor/bernardino/bower_components/backbone.bootstrap-modal/src/backbone.bootstrap-modal.js') }} "></script>
-            <script src="{{ asset('vendor/bernardino/bower_components/hello/dist/hello.all.min.js') }} "></script>
+            <script src="{{ asset('vendor/congkhuong/bower_components/jsplumb/dist/js/jquery.jsPlumb-1.6.4.js') }}"></script>
+            <script src="{{ asset('vendor/congkhuong/bower_components/underscore/underscore.js') }}"></script>
+            <script src="{{ asset('vendor/congkhuong/bower_components/backbone/backbone.js') }}"></script>
+            <script src="{{ asset('vendor/congkhuong/bower_components/marionette/lib/backbone.marionette.js') }}"></script>
+            <script src="{{ asset('vendor/congkhuong/bower_components/backbone.syphon/lib/backbone.syphon.js') }}"></script>
+            <script src="{{ asset('vendor/congkhuong/bower_components/backbone.bootstrap-modal/src/backbone.bootstrap-modal.js') }} "></script>
+            <script src="{{ asset('vendor/congkhuong/bower_components/hello/dist/hello.all.min.js') }} "></script>
             <!-- region -->
-            <script src="{{ asset('vendor/bernardino/app/js/app.js') }}"></script>
+            <script src="{{ asset('vendor/congkhuong/app/js/app.js') }}"></script>
             <!-- schema entity -->            
-            <script src="{{ asset('vendor/bernardino/app/js/entities/node_entities.js') }}"></script>
+            <script src="{{ asset('vendor/congkhuong/app/js/entities/node_entities.js') }}"></script>
             <!-- node -->
-            <script src="{{ asset('vendor/bernardino/app/js/node/node_view.js') }} "></script>            
-            <script src="{{ asset('vendor/bernardino/app/js/node/node_modal_base.js') }}"></script>
-            <script src="{{ asset('vendor/bernardino/app/js/node/node_modal_container.js') }}"></script>
-            <script src="{{ asset('vendor/bernardino/app/js/node/node_modal_generate.js') }}"></script>
-            <script src="{{ asset('vendor/bernardino/app/js/node/node_modal_item.js') }}"></script>
-            <script src="{{ asset('vendor/bernardino/app/js/node/node_modal_relation.js') }}"></script>
-            <script src="{{ asset('vendor/bernardino/app/js/node/node_modal_seed.js') }}"></script>
-            <script src="{{ asset('vendor/bernardino/app/js/node/node_modal_gist.js') }}"></script>            
-            <script src="{{ asset('vendor/bernardino/app/js/node/node_controller.js') }}"></script>            
+            <script src="{{ asset('vendor/congkhuong/app/js/node/node_view.js') }} "></script>            
+            <script src="{{ asset('vendor/congkhuong/app/js/node/node_modal_base.js') }}"></script>
+            <script src="{{ asset('vendor/congkhuong/app/js/node/node_modal_container.js') }}"></script>
+            <script src="{{ asset('vendor/congkhuong/app/js/node/node_modal_generate.js') }}"></script>
+            <script src="{{ asset('vendor/congkhuong/app/js/node/node_modal_item.js') }}"></script>
+            <script src="{{ asset('vendor/congkhuong/app/js/node/node_modal_relation.js') }}"></script>
+            <script src="{{ asset('vendor/congkhuong/app/js/node/node_modal_seed.js') }}"></script>
+            <script src="{{ asset('vendor/congkhuong/app/js/node/node_modal_gist.js') }}"></script>            
+            <script src="{{ asset('vendor/congkhuong/app/js/node/node_controller.js') }}"></script>            
             <!-- canvas -->
-            <script src="{{ asset('vendor/bernardino/app/js/canvas/nodecanvas_view.js') }}"></script>        
-            <script src="{{ asset('vendor/bernardino/app/js/canvas/nodecanvas_controller_base.js') }}"></script>
-            <script src="{{ asset('vendor/bernardino/app/js/canvas/nodecanvas_controller_canvas.js') }}"></script>
-            <script src="{{ asset('vendor/bernardino/app/js/canvas/nodecanvas_controller_child.js') }}"></script>
+            <script src="{{ asset('vendor/congkhuong/app/js/canvas/nodecanvas_view.js') }}"></script>        
+            <script src="{{ asset('vendor/congkhuong/app/js/canvas/nodecanvas_controller_base.js') }}"></script>
+            <script src="{{ asset('vendor/congkhuong/app/js/canvas/nodecanvas_controller_canvas.js') }}"></script>
+            <script src="{{ asset('vendor/congkhuong/app/js/canvas/nodecanvas_controller_child.js') }}"></script>
             <!-- main startup -->
-            <script src="{{ asset('vendor/bernardino/app/js/main.js')}}"></script>
-            <script src="{{ asset('vendor/bernardino/app/js/node-webkit/node.js') }}"></script>
+            <script src="{{ asset('vendor/congkhuong/app/js/main.js')}}"></script>
+            <script src="{{ asset('vendor/congkhuong/app/js/node-webkit/node.js') }}"></script>
 
         </body>
     </html>
