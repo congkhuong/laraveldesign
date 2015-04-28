@@ -1,4 +1,7 @@
 {
+	"config": {
+        "vendor-dir": "plugins"
+    },
     "name": "congkhuong/laraveldesign",
     "description": "Design database on laravel 5",
     "type": "c",
