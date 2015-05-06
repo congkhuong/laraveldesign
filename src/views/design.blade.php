@@ -20,7 +20,7 @@
         <![endif]-->
     </head>
     <body>
-        <input style="display:none;" id="fileSaveDialog" type="file" nwsaveas />
+        <input style="display:none;" id="fileSaveDialog" type="file" />
         <input style="display:none;" id="fileOpenDialog" type="file" />
         <!-- Dialog Region
         ================================================== -->
@@ -590,7 +590,7 @@
 				<fieldset>
 
 				<!-- Form Name -->
-				<legend>Save as Gist</legend>
+				<legend>Save as Db</legend>
 
 				<!-- Text input-->
 				<div class="form-group">
