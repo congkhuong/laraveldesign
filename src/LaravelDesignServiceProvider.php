@@ -16,6 +16,9 @@ class LaravelDesignServiceProvider extends ServiceProvider {
       	$this->publishes([
 	    	__DIR__.'/views' => base_path('resources/views/congkhuong/laravelDesign'),
 		]);
+        $this->publishes([
+        __DIR__.'/migrations' => base_path('database/migrations'),
+    ]);
 
       	//
 		$this->publishes([
@@ -31,7 +34,8 @@ class LaravelDesignServiceProvider extends ServiceProvider {
    	public function register() {
       	include __DIR__.'/routes.php';
       	$this->app->make('Congkhuong\LaravelDesign\Controllers\DesignerController');
-		$this->app->make('Congkhuong\LaravelDesign\Controllers\DatabasesController');
+		    $this->app->make('Congkhuong\LaravelDesign\Controllers\DatabasesController');
+        $this->app->make('Congkhuong\LaravelDesign\Models\File');
    	}
 
 }

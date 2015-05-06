@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="">
+        <meta name="csrf-token" content="{{ csrf_token() }}" />
         <title>Laravel Database Designer 0.1</title>
         <!-- Bootstrap core CSS -->
         <link href="{{ asset('vendor/congkhuong/bower_components/bootstrap/dist/css/bootstrap.css') }} " rel="stylesheet">
@@ -220,7 +221,7 @@
                 </button>
                 <ul class="dropdown-menu" role="menu">
                     <li><a class="save" href="#">Save</a></li>
-                    <li><a class="open" href="#">Open</a></li>
+                    <!--<li><a class="open" href="#">Open</a></li>-->
 
                     <li><a class="saveas" href="#">Save As</a></li>
                     <li class="divider"></li>                    
@@ -232,10 +233,12 @@
                     <li><a class="loadexample" href="#">Load Example</a></li>                    
                     <li><a class="clearcanvas" href="#">Clear Canvas</a></li>
                     <li class="divider"></li>
-                    <li><a class="testcanvas" href="#">Test</a></li>
-                    <li><a class="loadsavedbs" href="#">Load save dbs</a></li>
+                    <!--<li><a class="testcanvas" href="#">Test</a></li>
+                    <li><a class="loadsavedbs" href="#">Load save dbs</a></li>-->
                     <li><a class="opendbid" href="#">Open saved db</a></li>
                     <li><a class="opensavedbs" href="#">Open saved dbs</a></li>
+                    <li class="divider"></li>
+                    <li><a class="exportsql" href="#">Export sql</a></li>
                 </ul>
             </div>
         </div>
