@@ -35,7 +35,7 @@ DesignerApp.module("NodeEntities", function(NodeEntities, DesignerApp, Backbone,
             if (typeof param !== 'undefined') {
                 if (!param.colid) this.set("colid", this.cid);
             }
-            //console.log(this.get("cid"));
+			
         },
         validate: function(attrs, options) {
             return {
@@ -45,8 +45,32 @@ DesignerApp.module("NodeEntities", function(NodeEntities, DesignerApp, Backbone,
         }
     });
 
+    var NodeDbModel = Backbone.Model.extend({
+        defaults: {
+            name: '',
+            description: ''
+        },
+        initialize: function(dbs) {
+            if (typeof dbs !== 'undefined') {
+                if (!dbs.colid) this.set("colid", this.cid);
+            }
+			
+        },
+        validate: function(attrs, options) {
+            return {
+                error: "Wew"
+            };
+            //console.log("wew");
+        }
+    });
+	
     var NodeCollection = Backbone.Collection.extend({
         model: NodeModel,
+        comparator: "order"
+    });
+
+    var NodeDbCollection = Backbone.Collection.extend({
+        model: NodeDbModel,
         comparator: "order"
     });
 
@@ -181,7 +205,28 @@ DesignerApp.module("NodeEntities", function(NodeEntities, DesignerApp, Backbone,
 
         }
     });
-
+	/*
+    var NodeDbContainer = Backbone.Model.extend({
+        defaults: {
+            name: "",
+			classname: "",
+            description: ""
+        },
+    });
+	*/
+	
+    var NodeDbContainer = Backbone.Model.extend({
+        defaults: {
+            name: "AAA",
+			classname: "bbb",
+            description: "ccc"
+        },
+    });
+		
+    var NodeDbCanvas = Backbone.Collection.extend({
+        model: NodeDbContainer
+    });
+	
     var NodeCanvas = Backbone.Collection.extend({
         model: NodeContainer
     });
@@ -211,15 +256,27 @@ DesignerApp.module("NodeEntities", function(NodeEntities, DesignerApp, Backbone,
 
 
     var nodeCanvas = new NodeCanvas();
+	
+    var nodeDbCanvas = new NodeDbCanvas();
 
     NodeEntities.CurrentNodeCanvas = nodeCanvas;
+	
+    NodeEntities.CurrentNodeDbCanvas = nodeDbCanvas;
 
     NodeEntities.getNewNodeContainer = function() {
         return new NodeContainer();
     };
 
+    NodeEntities.getNewNodeDbContainer = function() {
+        return new NodeDbContainer();
+    };
+
     NodeEntities.getNewNodeModel = function() {
         return new NodeModel();
+    };
+
+    NodeEntities.getNewNodeDbModel = function() {
+        return new NodeDbModel();
     };
 
     NodeEntities.getNewRelationModel = function() {
@@ -231,8 +288,16 @@ DesignerApp.module("NodeEntities", function(NodeEntities, DesignerApp, Backbone,
         return nodeCanvas;
     };
 
+    NodeEntities.getNodeDbCanvas = function() {
+        return nodeDbCanvas;
+    };
+
     NodeEntities.getNodeContainerFromNodeCid = function(modelcid) {
         return nodeCanvas.get(modelcid);
+    };
+	
+    NodeEntities.getNodeDbContainerFromNodeCid = function(modelcid) {
+        return nodeDbCanvas.get(modelcid);
     };
 
     NodeEntities.getNodeContainerFromClassName = function(modelname) {
@@ -247,19 +312,26 @@ DesignerApp.module("NodeEntities", function(NodeEntities, DesignerApp, Backbone,
         })[0];
     };
 
+    NodeEntities.AddNodeCanvas = function(nodeCanvasParam) {
+        for (var node in nodeCanvasParam) {
+            NodeEntities.AddNewNode(nodeCanvasParam[node]);
+        }
+        NodeEntities.AddNewRelation();
+    };
 
     NodeEntities.AddNewNode = function(param) {
         var nodeContainer = new NodeContainer(param);
         var col = nodeContainer.get("column"); //NodeCollection
         var rel = nodeContainer.get("relation"); //RelationCollection
-
+		
+		console.log(col);
         nodeContainer.set("column", new NodeCollection(col));
         nodeContainer.set("relation", new RelationCollection(rel));
         nodeContainer.set("seeding", new NodeEntities.Seeding());
 
         nodeContainer.set("seeding", nodeContainer.getSeeding());
+        console.log(nodeContainer);
         nodeCanvas.add(nodeContainer);
-        //console.log(param);
 
         _.each(param.seeding, function(seedItem) {
             var seed = new NodeEntities.SeedTableCollection();
@@ -292,7 +364,22 @@ DesignerApp.module("NodeEntities", function(NodeEntities, DesignerApp, Backbone,
 
 
     };
-
+	
+    NodeEntities.AddNodeDbCanvas = function(dbs) {
+        var nodeDbContainer = new NodeDbContainer(dbs);
+		console.log(nodeDbContainer);
+        var cols = nodeDbContainer.get("dbs");
+		nodeDbContainer.set("dbs", new NodeDbCollection(cols));
+        nodeDbCanvas.add(nodeDbContainer);
+    };
+    /*
+    NodeEntities.AddNewNodeDb = function(param) {
+        
+        var nodeDbContainer = new NodeDbContainer(param);
+		
+        nodeDbCanvas.add(nodeDbContainer);
+    };
+	*/
     NodeEntities.AddNewRelation = function(nodeCanvasParam) {
         nodeCanvas.each(function(node) {
             var relations = node.get("relation");
@@ -300,14 +387,6 @@ DesignerApp.module("NodeEntities", function(NodeEntities, DesignerApp, Backbone,
                 NodeEntities.AddRelation(node, relation);
             });
         });
-    };
-
-    NodeEntities.AddNodeCanvas = function(nodeCanvasParam) {
-        for (var node in nodeCanvasParam) {
-            NodeEntities.AddNewNode(nodeCanvasParam[node]);
-
-        }
-        NodeEntities.AddNewRelation();
     };
 
     NodeEntities.AddRelation = function(node, relation) {

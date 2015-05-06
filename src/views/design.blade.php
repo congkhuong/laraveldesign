@@ -224,13 +224,18 @@
 
                     <li><a class="saveas" href="#">Save As</a></li>
                     <li class="divider"></li>                    
-                    <li><a class="opengist" href="#">Open from Gist</a></li>
+                    <!--li><a class="opengist" href="#">Open from Gist</a></li>
                     <li><a class="opengistid" href="#">Open Gist ID</a></li>
                     <li><a class="savecurrentgis" href="#">Save current Gist</a></li>
                     <li><a class="saveasgist" href="#">Save as Gist</a></li>
-                    <li class="divider"></li>
+                    <li class="divider"></li-->
                     <li><a class="loadexample" href="#">Load Example</a></li>                    
                     <li><a class="clearcanvas" href="#">Clear Canvas</a></li>
+                    <li class="divider"></li>
+                    <li><a class="testcanvas" href="#">Test</a></li>
+                    <li><a class="loadsavedbs" href="#">Load save dbs</a></li>
+                    <li><a class="opendbid" href="#">Open saved db</a></li>
+                    <li><a class="opensavedbs" href="#">Open saved dbs</a></li>
                 </ul>
             </div>
         </div>
@@ -245,6 +250,7 @@
         <a href="#" class="btn delete btn-xs btn-container"><span class="glyphicon glyphicon-remove"></span></a>
         </div>
         </script>
+		
         <!-- Template
         ================================================== -->
         <script type="text/template" id="nodecontainer-template">
@@ -262,6 +268,30 @@
                 <div id="conn-<%=name%>" style="" tag="<%=name%>" class="conn"></div>
         </div>
         </script>
+		
+        <!-- Template
+        ================================================== -->
+        <script type="text/template" id="nodedbcontainer-template">
+			<div>
+				<p> <b>List saved databses</b></p>
+				<ul class="nodedbcollection-container">
+					
+				</ul>
+			</div>
+        </script>
+		
+        <!-- Template
+        ================================================== -->
+        <script type="text/template" id="nodedbitem-template">
+			<b><%=name%></b> (<i><%=description%></i>)
+
+			<div style="float: right">
+				<a href="#" class="btn view btn-xs btn-container">
+					<span class="glyphicon glyphicon-eye-open"></span>
+				</a>
+			</div>
+        </script>
+		
         <!-- Template
         ================================================== -->
         <script type="text/template" id="createnode-template">
@@ -498,6 +528,19 @@
             </a>
             <% }); %>
             </div>            
+            </script>
+			
+            <!-- Template
+            ================================================== -->
+            <script type="text/template" id="dbfile-template">
+				<div class="list-group">
+					<% _.each(dblist, function(item) { %>
+						<a href="#" class="list-group-item" tag="<%=item.id%>" >
+							<h4 class="list-group-item-heading"><%= item.name %></h4>
+							<p class="list-group-item-text"><%= item.description%></p>
+						</a>
+					<% }); %>
+				</div>            
             </script>               
             <!-- Template
             ================================================== -->
@@ -539,6 +582,46 @@
             </form>
 
             </script>
+			
+			<!-- Template
+            ================================================== -->
+            <script type="text/template" id="dbsave-template">
+				<form class="form-horizontal">
+				<fieldset>
+
+				<!-- Form Name -->
+				<legend>Save as Gist</legend>
+
+				<!-- Text input-->
+				<div class="form-group">
+				  <label class="col-md-4 control-label" for="filename">Filename</label>  
+				  <div class="col-md-4">
+				  <input id="filename" name="filename" type="text" placeholder="" class="form-control input-md">
+					
+				  </div>
+				</div>
+
+				<!-- Text input-->
+				<div class="form-group">
+				  <label class="col-md-4 control-label" for="description">Description</label>  
+				  <div class="col-md-4">
+				  <input id="description" name="description" type="text" placeholder="" class="form-control input-md">
+					
+				  </div>
+				</div>
+
+				<!-- Button (Double) -->
+				<div class="form-group">
+				  <label class="col-md-4 control-label" for="button1id"></label>
+				  <div class="col-md-8">
+					<button id="button1id" name="button1id" class="btn ok btn-success">Ok</button>
+					<button id="button2id" name="button2id" class="btn cancel btn-danger">Cancel</button>
+				  </div>
+				</div>
+
+				</fieldset>
+				</form>
+            </script>
             <!-- Template
             ================================================== -->
             <script type="text/template" id="gistload-template">
@@ -549,6 +632,18 @@
     </div>
             </div>
             </script>
+			
+            <!-- Template
+            ================================================== -->
+            <script type="text/template" id="dbload-template">
+				<legend>Load saved dbs</legend>
+				<div id="dbfiles">
+					<div class="progress">
+						<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"><span class="sr-only">Loading..</span></div>
+					</div>
+				</div>
+            </script>
+			
             <!-- Template
             ================================================== -->
             <script type="text/template" id="gistloadid-template">
@@ -559,6 +654,33 @@
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Gist ID</label>
+                            <div class="col-md-4">
+                                <input id="filename" name="filename" type="text" placeholder="" class="form-control input-md">
+                                
+                            </div>
+                        </div>
+                        <!-- Button (Double) -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="button1id"></label>
+                            <div class="col-md-8">
+                                <button id="button1id" name="button1id" class="btn ok btn-success">Open</button>
+                                <button id="button2id" name="button2id" class="btn cancel btn-danger">Cancel</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+             </script>
+			 
+            <!-- Template
+            ================================================== -->
+            <script type="text/template" id="dbloadid-template">
+                <form class="form-horizontal">
+                    <fieldset>
+                        <!-- Form Name -->
+                        <legend>Load saved db</legend>
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="textinput">Db ID</label>
                             <div class="col-md-4">
                                 <input id="filename" name="filename" type="text" placeholder="" class="form-control input-md">
                                 
@@ -604,6 +726,7 @@
             <script src="{{ asset('vendor/congkhuong/app/js/node/node_modal_relation.js') }}"></script>
             <script src="{{ asset('vendor/congkhuong/app/js/node/node_modal_seed.js') }}"></script>
             <script src="{{ asset('vendor/congkhuong/app/js/node/node_modal_gist.js') }}"></script>            
+            <script src="{{ asset('vendor/congkhuong/app/js/node/node_modal_db.js') }}"></script>            
             <script src="{{ asset('vendor/congkhuong/app/js/node/node_controller.js') }}"></script>            
             <!-- canvas -->
             <script src="{{ asset('vendor/congkhuong/app/js/canvas/nodecanvas_view.js') }}"></script>        

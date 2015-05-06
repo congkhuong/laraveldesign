@@ -1,5 +1,4 @@
 DesignerApp.module("NodeCanvas.Views", function(Views, DesignerApp, Backbone, Marionette, $, _) {
-
     Views.NodeCanvas = Backbone.Marionette.CompositeView.extend({
         id: "container",
         template: "#nodecanvas-template",
@@ -16,8 +15,11 @@ DesignerApp.module("NodeCanvas.Views", function(Views, DesignerApp, Backbone, Ma
             "click .opengistid": "canvas:opengistid",
             "click .savecurrentgis": "canvas:savecurrentgis",
             "click .saveasgist": "canvas:saveasgist",
+            "click .testcanvas": "canvas:testcanvas",
+            "click .loadsavedbs": "canvas:loadsavedbs",
+            "click .opendbid": "canvas:opendbid",
+            "click .opensavedbs": "canvas:opensavedbs",
             "dblclick": "canvas:createcontainer"
         },
     });
-
 });

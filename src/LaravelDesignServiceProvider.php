@@ -5,13 +5,12 @@ use Congkhuong\LaravelDesign\Controllers\DesignerController;
 
 class LaravelDesignServiceProvider extends ServiceProvider {
 
-   /**
+    /**
     * Bootstrap the application services.
     *
     * @return void
     */
-   public function boot()
-   {
+    public function boot() {
       	$this->loadViewsFrom(__DIR__.'/views', 'laravelDesign');
 
       	$this->publishes([
@@ -22,17 +21,17 @@ class LaravelDesignServiceProvider extends ServiceProvider {
 		$this->publishes([
 		    __DIR__.'/assets' => public_path('vendor/congkhuong'),
 		], 'congkhuong');
-   }
+    }
 
-   /**
+    /**
     * Register the application services.
     *
     * @return void
     */
-   	public function register()
-   	{
+   	public function register() {
       	include __DIR__.'/routes.php';
       	$this->app->make('Congkhuong\LaravelDesign\Controllers\DesignerController');
+		$this->app->make('Congkhuong\LaravelDesign\Controllers\DatabasesController');
    	}
 
 }

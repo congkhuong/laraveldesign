@@ -117,7 +117,6 @@ DesignerApp.module("NodeModule.Views", function(Views, DesignerApp, Backbone, Ma
                 anchor: 'Continuous'
             }, this);
 
-
             jsPlumb.makeSource(this.$el.find(".conn"), {
                 parent: this.el,
                 anchor: 'Continuous',
@@ -181,7 +180,74 @@ DesignerApp.module("NodeModule.Views", function(Views, DesignerApp, Backbone, Ma
         }
     });
 
+    Views.NodeDbContainer = Backbone.Marionette.CompositeView.extend({
+        template: "#nodedbcontainer-template",
+        className: "node-db-view item",
+        childView: Views.NodeDbItem,
+        childViewContainer: ".nodedbcollection-container",
+        
+        nodeViewList: [],
+        initialize: function() {
+            console.log(this.model);
+            this.collection = this.model.get("dbs");
+            this.collection = this.model;
+            this.$el.attr("id", this.model.cid);
+            this.$el.addClass("node-" + this.model.get("color"));            
+           // console.log("wew");
+        },
+        childEvents: {
+            'nodeitem:view': function(item) {
+                this.trigger('container:nodedbitem:view', item);
+            }
+        },
+        onAddChild: function(child) {
+            this.nodeViewList.push(child);
+        },
+        
+        onRender: function(dom) {
+            console.log(dom);
+            var self = this;
+            this.$(this.childViewContainer).sortable({
+                update: function(ev, ui) {
+                    self.updateIndex();
+                }
+            });
 
+            //this.$el.css("left", pos.x);
+            //this.$el.css("top", pos.y);
+        },
+        onBeforeDestroy: function() {
+            var self = this;
+            jsPlumb.detachAllConnections(this.$el);
+            jsPlumb.removeAllEndpoints(this.$el);
+
+            setTimeout(function() { //jquery draggable memory leak fix
+                self.remove();
+            }, 500);
+
+        },
+        updateIndex: function() {
+            for (var i in this.nodeViewList)
+                this.nodeViewList[i].model.set('order', this.nodeViewList[i].$el.index());
+            this.collection.sort({
+                silent: true
+            });
+        }
+    });
+    
+    Views.NodeDbItem = Backbone.Marionette.ItemView.extend({
+        tagName: "li",
+        className: 'node-column',
+        template: "#nodedbitem-template",
+        triggers: {
+            'click .view': 'nodedbitem:view',
+        },
+        modelEvents: {
+            "change": "render"
+        },
+        initialize: function() {}
+    });
+    
     Views.RelationItem = Backbone.Marionette.ItemView.extend({
         template: "#relationcollection-template",
         tagName: 'tr',

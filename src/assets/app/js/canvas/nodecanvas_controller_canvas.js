@@ -1,8 +1,7 @@
 DesignerApp.module("NodeCanvas.Controller", function(Controller, DesignerApp, Backbone, Marionette, $, _) {
 
     var viewNodeCanvas = Controller.viewNodeCanvas;
-
-
+	
     var loadGist = function(gistId) {
         var github = hello("github");
         github.api('/gists/' + gistId, 'get', {random : Math.random()}).then(function(resp) {
@@ -17,6 +16,25 @@ DesignerApp.module("NodeCanvas.Controller", function(Controller, DesignerApp, Ba
                 DesignerApp.NodeEntities.AddNodeCanvas(jsonfile);
             }
         });
+    };
+
+    var loadDb = function(dbId) {
+        $.ajax({
+            url: "/databases/ajax", 
+            success: function(result){
+				//jsonResult = JSON.parse(result);
+				jsonResult = $.parseJSON(result);
+                data = jsonResult.files['aaa.skema'].content;
+				//console.log(data);
+                DesignerApp.NodeEntities.ClearNodeCanvas(DesignerApp.NodeEntities.getNodeCanvas());
+				DesignerApp.NodeEntities.AddNodeCanvas(data);
+            },
+			/*
+            complete: function() {
+                alert('complete');
+            }
+			*/
+        })
     };
 
 
@@ -90,23 +108,33 @@ DesignerApp.module("NodeCanvas.Controller", function(Controller, DesignerApp, Ba
         }
     });
 
-
-
-
-
-
-
-
-
+    viewNodeCanvas.on("canvas:opensavedbs", function() {
+        var view = new DesignerApp.NodeModule.Modal.DbLoad({});
+		view.listenTo(view, "okClicked", function(fileName) {
+			loadDb(fileName);
+		});
+		var dbids = [];
+		$.ajax({
+            url: "/databases/getdbs", 
+            success: function(result){
+				dbs = $.parseJSON(result);
+				
+                for (var k in dbs) {
+                    var db = dbs[k]; //returns 'someVal'
+					dbids.push(db);
+                }
+                view.trigger("listDbFiles", dbids);
+            }
+		});
+        var modal = DesignerApp.NodeModule.Modal.CreateTestModal(view);
+    });
+	
     viewNodeCanvas.on("canvas:opengist", function() {
         if (!authenticated) {
             hello.login("github", {
                 scope: "gist"
             });
         } else {
-
-
-
             var view = new DesignerApp.NodeModule.Modal.GistLoad({});
             view.listenTo(view, "okClicked", function(fileName) {
                 loadGist(fileName);
@@ -149,6 +177,15 @@ DesignerApp.module("NodeCanvas.Controller", function(Controller, DesignerApp, Ba
         });
     });
 
+    viewNodeCanvas.on("canvas:opendbid", function() {
+        var view = new DesignerApp.NodeModule.Modal.DbLoadId({});
+        var modal = DesignerApp.NodeModule.Modal.CreateTestModal(view);
+        view.listenTo(view, "okClicked", function(fileName) {
+            loadDb(fileName);
+            modal.preventClose();
+        });
+    });
+	
     viewNodeCanvas.on("canvas:savecurrentgis", function() {
         updateGist(gistloadedid);
     });
@@ -164,8 +201,6 @@ DesignerApp.module("NodeCanvas.Controller", function(Controller, DesignerApp, Ba
 
     });
 
-
-
     viewNodeCanvas.on("canvas:save", function() {
         if (typeof process != 'undefined') {
             $("#fileSaveDialog").trigger("click");
@@ -180,11 +215,47 @@ DesignerApp.module("NodeCanvas.Controller", function(Controller, DesignerApp, Ba
 
     viewNodeCanvas.on("canvas:loadexample", function() {
         DesignerApp.NodeEntities.ClearNodeCanvas(DesignerApp.NodeEntities.CurrentNodeCanvas);
+		console.log(node_data);
         DesignerApp.NodeEntities.AddNodeCanvas(node_data);
     });
 
     viewNodeCanvas.on("canvas:clearcanvas", function() {
         DesignerApp.NodeEntities.ClearNodeCanvas(DesignerApp.NodeEntities.CurrentNodeCanvas);
+    });
+
+    viewNodeCanvas.on("canvas:testcanvas", function() {
+        DesignerApp.NodeEntities.ClearNodeCanvas(DesignerApp.NodeEntities.CurrentNodeCanvas);
+        $.ajax({
+            url: "/databases/ajax", 
+            success: function(result){
+				//jsonResult = JSON.parse(result);
+				jsonResult = $.parseJSON(result);
+                data = jsonResult.files['aaa.skema'].content;
+				//console.log(data);
+				DesignerApp.NodeEntities.AddNodeCanvas(data);
+            },
+			/*
+            complete: function() {
+                alert('complete');
+            }
+			*/
+        })
+		/*.done( function() {
+                alert('done');
+            });
+		*/
+    });
+	
+    viewNodeCanvas.on("canvas:loadsavedbs", function() {
+        DesignerApp.NodeEntities.ClearNodeCanvas(DesignerApp.NodeEntities.CurrentNodeCanvas);
+        $.ajax({
+            url: "/databases/getdbs", 
+            success: function(result){
+				//jsonResult = JSON.parse(result);
+				jsonResult = $.parseJSON(result);
+				DesignerApp.NodeEntities.AddNodeDbCanvas(jsonResult);
+            },
+        })
     });
 
     viewNodeCanvas.on("canvas:generate", function() {

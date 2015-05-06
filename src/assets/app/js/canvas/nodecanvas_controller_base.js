@@ -5,11 +5,18 @@ DesignerApp.module("NodeCanvas.Controller", function(Controller, DesignerApp, Ba
     Controller.viewNodeCanvas = new DesignerApp.NodeCanvas.Views.NodeCanvas({
         collection: DesignerApp.NodeEntities.getNodeCanvas()
     });
+	/*
+    Controller.viewNodeDbCanvas = new DesignerApp.NodeCanvas.Views.NodeDbCanvas({
+        collection: DesignerApp.NodeEntities.getNodeDbCanvas()
+    });
+	*/
     //
     //  LAUNCH
     //
 
     DesignerApp.mainContent.show(Controller.viewNodeCanvas);
+	
+    //DesignerApp.mainContent.show(Controller.viewNodeDbCanvas);
 
 
     //todo refactor
