@@ -113,7 +113,7 @@ Route::get('/databases/ajax', function() {
 							"relation"=>[
 								["extramethods"=>"",
 								"foreignkeys"=>"",
-								"name"=>"postsz",
+								"name"=>"Posts",
 								"relatedmodel"=>"Post",
 								"relationtype"=>"hasMany",
 								"usenamespace"=>""]
